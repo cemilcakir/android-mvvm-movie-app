@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Anroid Movie App MVVM</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="now_playing_movies">Now Playing Movies</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="movie_details">Movie Details</string>
+</resources>
