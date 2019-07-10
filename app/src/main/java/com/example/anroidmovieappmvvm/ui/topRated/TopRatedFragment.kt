@@ -8,15 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import com.example.anroidmovieappmvvm.R
 import com.example.anroidmovieappmvvm.data.models.MovieModel
+import com.example.anroidmovieappmvvm.data.repository.MovieRepository
 
 import com.example.anroidmovieappmvvm.databinding.TopRatedFragmentBinding
+import com.example.anroidmovieappmvvm.internal.NetworkStatus
 import com.example.anroidmovieappmvvm.ui.MovieAdapter
 import com.example.anroidmovieappmvvm.ui.MovieListener
 import com.example.anroidmovieappmvvm.ui.MovieViewModel
 import com.example.anroidmovieappmvvm.ui.ViewModelType
+import com.google.android.material.snackbar.Snackbar
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class TopRatedFragment : Fragment() {
+class TopRatedFragment : Fragment(), KodeinAware {
+
+    override val kodein by closestKodein()
+    private val repository: MovieRepository by instance()
 
     private lateinit var viewModel: MovieViewModel
     private lateinit var binding: TopRatedFragmentBinding
@@ -32,7 +43,7 @@ class TopRatedFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val viewModelFactory = MovieViewModel.Factory(ViewModelType.TOP_RATED)
+        val viewModelFactory = MovieViewModel.Factory(ViewModelType.TOP_RATED, repository)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieViewModel::class.java)
 
         binding.viewModel = viewModel
@@ -60,6 +71,11 @@ class TopRatedFragment : Fragment() {
 
                 viewModel.doneNavigatingToDetail()
             }
+        })
+
+        viewModel.networkStatus.observe(viewLifecycleOwner, Observer {
+            if (it == NetworkStatus.NO_CONNECTIVITY)
+                Snackbar.make(binding.root, resources.getString(R.string.no_connectivity), Snackbar.LENGTH_SHORT).show()
         })
     }
 

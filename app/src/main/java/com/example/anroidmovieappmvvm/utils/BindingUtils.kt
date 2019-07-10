@@ -1,4 +1,4 @@
-package com.example.anroidmovieappmvvm.ui.utils
+package com.example.anroidmovieappmvvm.utils
 
 import android.view.View
 import android.widget.ImageView

@@ -12,43 +12,43 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-private val BASE_URL = "https://api.themoviedb.org/3/"
-private val API_KEY = "3b80aa6376c8b4cda58d04c4263f7e47"
+private const val BASE_URL = "https://api.themoviedb.org/3/"
+private const val API_KEY = "3b80aa6376c8b4cda58d04c4263f7e47"
 
-private val DEFAULT_LANGUAGE = "en-US"
+const val DEFAULT_LANGUAGE = "en-US"
 
 interface MovieWebService {
 
     //https://api.themoviedb.org/3/movie/now_playing?api_key=3b80aa6376c8b4cda58d04c4263f7e47&language=en-US&page=1
     @GET("movie/now_playing")
     suspend fun getNowPlayingMovies(
-        @Query("language") language: String = DEFAULT_LANGUAGE,
-        @Query("page") page: Int = 1
+        @Query("language") language: String,
+        @Query("page") page: Int
     ): ResponseModel
 
     //https://api.themoviedb.org/3/movie/top_rated?api_key=3b80aa6376c8b4cda58d04c4263f7e47&language=en-US&page=1
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(
-        @Query("language") language: String = DEFAULT_LANGUAGE,
-        @Query("page") page: Int = 1
+        @Query("language") language: String,
+        @Query("page") page: Int
     ): ResponseModel
 
     //https://api.themoviedb.org/3/movie/upcoming?api_key=3b80aa6376c8b4cda58d04c4263f7e47&language=en-US&page=1
     @GET("movie/upcoming")
     suspend fun getUpcomingMovies(
-        @Query("language") language: String = DEFAULT_LANGUAGE,
-        @Query("page") page: Int = 1
+        @Query("language") language: String,
+        @Query("page") page: Int
     ): ResponseModel
 
     //https://api.themoviedb.org/3/movie/299534?api_key=3b80aa6376c8b4cda58d04c4263f7e47&language=en-US
     @GET("movie/{id}")
     suspend fun getMovieDetails(
         @Path("id") id: Int,
-        @Query("language") language: String = DEFAULT_LANGUAGE
+        @Query("language") language: String
     ): DetailModel
 
     companion object {
-        operator fun invoke(): MovieWebService {
+        operator fun invoke(connectivityInterceptor: ConnectivityInterceptor): MovieWebService {
             val requestInterceptor = Interceptor { chain ->
                 val url = chain.request()
                     .url()
@@ -66,6 +66,7 @@ interface MovieWebService {
 
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
+                .addInterceptor(connectivityInterceptor)
                 .build()
 
             val moshi = Moshi.Builder()

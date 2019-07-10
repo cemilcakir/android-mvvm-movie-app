@@ -11,7 +11,7 @@ data class DetailModel(
     @Json(name = "budget")
     val budget: Int,
     @Json(name = "homepage")
-    val homepage: String,
+    val homepage: String?,
     @Json(name = "id")
     val id: Int,
     @Json(name = "imdb_id")
