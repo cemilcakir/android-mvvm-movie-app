@@ -5,43 +5,43 @@ import com.squareup.moshi.Json
 
 data class DetailModel(
     @Json(name = "adult")
-    val adult: Boolean,
+    val adult: Boolean?,
     @Json(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
     @Json(name = "budget")
-    val budget: Int,
+    val budget: Int?,
     @Json(name = "homepage")
     val homepage: String?,
     @Json(name = "id")
     val id: Int,
     @Json(name = "imdb_id")
-    val imdbId: String,
+    val imdbId: String?,
     @Json(name = "original_language")
-    val originalLanguage: String,
+    val originalLanguage: String?,
     @Json(name = "original_title")
-    val originalTitle: String,
+    val originalTitle: String?,
     @Json(name = "overview")
-    val overview: String,
+    val overview: String?,
     @Json(name = "popularity")
-    val popularity: Double,
+    val popularity: Double?,
     @Json(name = "poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @Json(name = "release_date")
-    val releaseDate: String,
+    val releaseDate: String?,
     @Json(name = "revenue")
-    val revenue: Long,
+    val revenue: Long?,
     @Json(name = "runtime")
-    val runtime: Int,
+    val runtime: Int?,
     @Json(name = "status")
-    val status: String,
+    val status: String?,
     @Json(name = "tagline")
-    val tagline: String,
+    val tagline: String?,
     @Json(name = "title")
-    val title: String,
+    val title: String?,
     @Json(name = "video")
-    val video: Boolean,
+    val video: Boolean?,
     @Json(name = "vote_average")
-    val voteAverage: Double,
+    val voteAverage: Double?,
     @Json(name = "vote_count")
-    val voteCount: Int
+    val voteCount: Int?
 )

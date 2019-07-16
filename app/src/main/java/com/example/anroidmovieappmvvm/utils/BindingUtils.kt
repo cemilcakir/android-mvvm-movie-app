@@ -11,6 +11,8 @@ fun goneIfNotNull(view: View, it: Any?) {
 }
 
 @BindingAdapter("imageUrl")
-fun imageUrl(imageView: ImageView, url: String) {
-    Glide.with(imageView.context).load("http://image.tmdb.org/t/p/w200$url").into(imageView)
+fun imageUrl(imageView: ImageView, url: String?) {
+    url?.let {
+        Glide.with(imageView.context).load("http://image.tmdb.org/t/p/w200$it").into(imageView)
+    }
 }

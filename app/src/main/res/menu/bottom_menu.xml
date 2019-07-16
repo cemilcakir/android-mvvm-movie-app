@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/now_playing" android:id="@+id/nowPlayingFragment"/>
-    <item android:title="@string/top_rated" android:id="@+id/topRatedFragment"/>
-    <item android:title="@string/upcoming" android:id="@+id/upcomingFragment"/>
+    <item android:title="@string/now_playing" android:id="@+id/nowPlayingFragment"
+          android:icon="@drawable/ic_now_playing"/>
+    <item android:title="@string/top_rated" android:id="@+id/topRatedFragment" android:icon="@drawable/ic_top_rated"/>
+    <item android:title="@string/upcoming" android:id="@+id/upcomingFragment" android:icon="@drawable/ic_upcoming"/>
 </menu>

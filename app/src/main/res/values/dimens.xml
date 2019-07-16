@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="standard_horizantal_margin">20dp</dimen>
+    <dimen name="general_margin_20">20dp</dimen>
+    <dimen name="title_size">18sp</dimen>
 </resources>
