@@ -55,13 +55,8 @@ class TopRatedFragment : Fragment(), KodeinAware {
         binding.topRatedMovieList.adapter = adapter
 
         viewModel.movies.observe(viewLifecycleOwner, Observer {
-            it?.let {movieList ->
-                val list = arrayListOf<MovieModel>()
-                movieList.forEach {
-                    list.add(it)
-                }
-
-                adapter.submitList(list)
+            it?.let { movieList ->
+                adapter.submitList(movieList)
             }
         })
 

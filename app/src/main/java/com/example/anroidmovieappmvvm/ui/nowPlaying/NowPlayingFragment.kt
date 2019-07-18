@@ -55,12 +55,7 @@ class NowPlayingFragment : Fragment(), KodeinAware {
 
         viewModel.movies.observe(viewLifecycleOwner, Observer {
             it?.let { movieList ->
-                val list = arrayListOf<MovieModel>()
-                movieList.forEach {
-                    list.add(it)
-                }
-
-                adapter.submitList(list)
+                adapter.submitList(movieList)
             }
         })
 

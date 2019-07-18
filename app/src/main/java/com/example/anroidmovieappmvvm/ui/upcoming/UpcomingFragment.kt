@@ -55,13 +55,8 @@ class UpcomingFragment : Fragment(), KodeinAware {
         binding.upcomingMovieList.adapter = adapter
 
         viewModel.movies.observe(viewLifecycleOwner, Observer {
-            it?.let {movieList ->
-                val list = arrayListOf<MovieModel>()
-                movieList.forEach {
-                    list.add(it)
-                }
-
-                adapter.submitList(list)
+            it?.let { movieList ->
+                adapter.submitList(movieList)
             }
         })
 

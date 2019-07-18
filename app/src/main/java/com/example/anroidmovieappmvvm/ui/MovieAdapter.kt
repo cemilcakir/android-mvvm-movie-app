@@ -1,21 +1,24 @@
-package com.example.anroidmovieappmvvm.ui
+    package com.example.anroidmovieappmvvm.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anroidmovieappmvvm.data.models.MovieModel
 import com.example.anroidmovieappmvvm.databinding.MovieListItemBinding
 
-class MovieAdapter(val clickListener: MovieListener) : ListAdapter<MovieModel, MovieAdapter.ViewHolder>(MovieDiffCallback()) {
+class MovieAdapter(val clickListener: MovieListener) : PagedListAdapter<MovieModel, MovieAdapter.ViewHolder>(MovieDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, clickListener)
+        item?.let {
+            holder.bind(item, clickListener)
+        }
     }
 
     class MovieDiffCallback : DiffUtil.ItemCallback<MovieModel>() {
